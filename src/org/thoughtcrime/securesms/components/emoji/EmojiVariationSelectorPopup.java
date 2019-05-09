@@ -38,7 +38,11 @@ public class EmojiVariationSelectorPopup extends PopupWindow {
   public void setVariations(List<String> variations) {
     list.removeAllViews();
 
-    for (String variation : variations) {
+    String variation = null;
+    for(int i = 0; i< variations.size(); i++)
+    {
+      variation = variations.get(i);
+
       ImageView imageView = (ImageView) LayoutInflater.from(context).inflate(R.layout.emoji_variation_selector_item, list, false);
       imageView.setImageDrawable(EmojiProvider.getInstance(context).getEmojiDrawable(variation));
       imageView.setOnClickListener(v -> {
@@ -47,5 +51,6 @@ public class EmojiVariationSelectorPopup extends PopupWindow {
       });
       list.addView(imageView);
     }
+
   }
 }

@@ -41,8 +41,11 @@ public class PointerAttachment extends Attachment {
     List<Attachment> results = new LinkedList<>();
 
     if (pointers.isPresent()) {
-      for (SignalServiceAttachment pointer : pointers.get()) {
-        Optional<Attachment> result = forPointer(Optional.of(pointer));
+
+      for (int i = 0; i < pointers.get().size(); i++) {
+
+
+        Optional<Attachment> result = forPointer(Optional.of(pointers.get().get(i)));
 
         if (result.isPresent()) {
           results.add(result.get());
@@ -57,8 +60,11 @@ public class PointerAttachment extends Attachment {
     List<Attachment> results = new LinkedList<>();
 
     if (pointers != null) {
-      for (SignalServiceDataMessage.Quote.QuotedAttachment pointer : pointers) {
-        Optional<Attachment> result = forPointer(pointer);
+      SignalServiceDataMessage.Quote.QuotedAttachment add = null;
+      for (int i = 0; i < pointers.size(); i++) {
+
+        add = pointers.get(i);
+        Optional<Attachment> result = forPointer(add);
 
         if (result.isPresent()) {
           results.add(result.get());

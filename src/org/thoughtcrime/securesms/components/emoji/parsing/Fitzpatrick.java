@@ -38,18 +38,19 @@ public enum Fitzpatrick {
 
 
   public static Fitzpatrick fitzpatrickFromUnicode(CharSequence unicode, int index) {
-    for (Fitzpatrick v : values()) {
+    for (int i = 0 ; i< values().length;i++)
+    {
       boolean match = true;
 
-      for (int i=0;i<v.unicode.toCharArray().length;i++) {
-        if (v.unicode.toCharArray()[i] != unicode.charAt(index + i)) {
+
+      for (int i=0;i<values()[i].unicode.toCharArray().length;i++) {
+        if (values()[i].unicode.toCharArray()[i] != unicode.charAt(index + i)) {
           match = false;
         }
       }
 
       if (match) return v;
     }
-
     return null;
   }
 

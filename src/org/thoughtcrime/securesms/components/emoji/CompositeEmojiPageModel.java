@@ -27,8 +27,8 @@ public class CompositeEmojiPageModel implements EmojiPageModel {
   @Override
   public @NonNull List<String> getEmoji() {
     List<String> emojis = new LinkedList<>();
-    for (EmojiPageModel model : models) {
-      emojis.addAll(model.getEmoji());
+    for(int i = 0; i<models.length; i++) {
+      emojis.addAll(models[i].getEmoji());
     }
     return emojis;
   }
@@ -36,8 +36,8 @@ public class CompositeEmojiPageModel implements EmojiPageModel {
   @Override
   public @NonNull List<Emoji> getDisplayEmoji() {
     List<Emoji> emojis = new LinkedList<>();
-    for (EmojiPageModel model : models) {
-      emojis.addAll(model.getDisplayEmoji());
+    for(int i = 0; i<models.length; i++) {
+      emojis.addAll(models[i].getDisplayEmoji());
     }
     return emojis;
   }

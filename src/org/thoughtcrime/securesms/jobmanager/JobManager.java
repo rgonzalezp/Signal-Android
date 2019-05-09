@@ -64,8 +64,8 @@ public class JobManager implements ConstraintObserver.Notifier {
         jobRunners[i].start();
       }
 
-      for (ConstraintObserver constraintObserver : configuration.getConstraintObservers()) {
-        constraintObserver.register(this);
+      for (int i = 0; i < configuration.getConstraintObservers().size(); i++) {
+        configuration.getConstraintObservers().get(i).register(this);
       }
 
       if (Build.VERSION.SDK_INT < 26) {
@@ -152,8 +152,11 @@ public class JobManager implements ConstraintObserver.Notifier {
 
   private void onEmptyQueue() {
     executor.execute(() -> {
-      for (EmptyQueueListener listener : emptyQueueListeners) {
-        listener.onQueueEmpty();
+
+      EmptyQueueListener[] queue = (EmptyQueueListener[]) emptyQueueListeners.toArray();
+
+      for (int i = 0; i < queue.length; i++) {
+        queue[i].onQueueEmpty();
       }
     });
   }

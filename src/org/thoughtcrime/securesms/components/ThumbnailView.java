@@ -183,8 +183,11 @@ public class ThumbnailView extends FrameLayout {
 
   private int getNonZeroCount(int[] vals) {
     int count = 0;
-    for (int val : vals) {
-      if (val > 0) {
+
+    int current = 0;
+    for (int i = 0; i < vals.length; i++) {
+      current = vals[i];
+      if (current > 0) {
         count++;
       }
     }

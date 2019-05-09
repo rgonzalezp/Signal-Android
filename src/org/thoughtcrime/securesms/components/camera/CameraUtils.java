@@ -38,17 +38,21 @@ public class CameraUtils {
     List<Size> ideals    = new LinkedList<>();
     List<Size> bigEnough = new LinkedList<>();
 
-    for (Size size : sizes) {
-      Log.d(TAG, String.format("  %dx%d (%.02f)", size.width, size.height, (float)size.width / size.height));
+    for (int i = 0; i < sizes.size();i++)
+    {
+      Size current = sizes.get(i);
+      Log.d(TAG, String.format("  %dx%d (%.02f)", current.width, current.height, (float)current.width / current.height));
 
-      if (size.height == size.width * targetRatio && size.height >= targetHeight && size.width >= targetWidth) {
-        ideals.add(size);
+      if (current.height == current.width * targetRatio && current.height >= targetHeight && current.width >= targetWidth) {
+        ideals.add(current);
         Log.d(TAG, "    (ideal ratio)");
-      } else if (size.width >= targetWidth && size.height >= targetHeight) {
-        bigEnough.add(size);
+      } else if (current.width >= targetWidth && current.height >= targetHeight) {
+        bigEnough.add(current);
         Log.d(TAG, "    (good size, suboptimal ratio)");
       }
+
     }
+
 
     if      (!ideals.isEmpty())    return Collections.min(ideals, new AreaComparator());
     else if (!bigEnough.isEmpty()) return Collections.min(bigEnough, new AspectRatioComparator(targetRatio));

@@ -98,8 +98,10 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientModi
 
     List<Recipient> recipients = getRecipients();
 
-    for (Recipient recipient : recipients) {
-      recipient.addListener(this);
+    Recipient current = null;
+    for (int i = 0; i < recipients.size(); i++) {
+      current = recipients.get(i);
+      current.addListener(this);
     }
 
     recipientsText.setAdapter(new RecipientsAdapter(this.getContext()));

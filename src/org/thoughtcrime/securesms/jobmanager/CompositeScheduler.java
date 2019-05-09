@@ -15,7 +15,9 @@ class CompositeScheduler implements Scheduler {
 
   @Override
   public void schedule(long delay, @NonNull List<Constraint> constraints) {
-    for (Scheduler scheduler : schedulers) {
+    Scheduler scheduler = null;
+    for (int i = 0; i < schedulers.size() ; i++) {
+      scheduler = schedulers.get(i);
       scheduler.schedule(delay, constraints);
     }
   }

@@ -181,7 +181,10 @@ public class SharedContactView extends LinearLayout implements RecipientModified
   }
 
   private void presentActionButtons(@NonNull List<Recipient> recipients) {
-    for (Recipient recipient : recipients) {
+
+    Recipient recipient = null
+    for (int i = 0; i < recipients.size(); i++) {
+      recipient = recipients.get(i);
       activeRecipients.put(recipient.getAddress().serialize(), recipient);
     }
 

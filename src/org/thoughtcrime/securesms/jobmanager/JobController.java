@@ -245,11 +245,13 @@ class JobController {
     List<FullSpec> fullSpecs = new LinkedList<>();
     List<Job>      dependsOn = Collections.emptyList();
 
-    for (List<Job> jobList : chain) {
-      for (Job job : jobList) {
-        fullSpecs.add(buildFullSpec(job, dependsOn));
+
+
+    for (int i = 0; i < chain.size(); i++) {
+      for (int j = 0; j < chain.get(i).size(); i++) {
+        fullSpecs.add(buildFullSpec(chain.get(i).get(j),dependsOn));
       }
-      dependsOn = jobList;
+      dependsOn = chain.get(i);
     }
 
     jobStorage.insertJobs(fullSpecs);

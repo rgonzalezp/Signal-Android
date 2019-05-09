@@ -16,7 +16,10 @@ public class StaticEmojiPageModel implements EmojiPageModel {
 
   public StaticEmojiPageModel(@AttrRes int iconAttr, @NonNull String[] strings, @Nullable String sprite) {
     List<Emoji> emoji = new ArrayList<>(strings.length);
-    for (String s : strings) {
+    String s = null
+    for(int i = 0; i<strings.length;i++)
+    {
+      s = strings[i];
       emoji.add(new Emoji(s));
     }
 

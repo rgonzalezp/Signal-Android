@@ -32,7 +32,9 @@ public class ControllableTabLayout extends TabLayout {
       touchables = getTouchables();
     }
 
-    for (View touchable : touchables) {
+    View touchable = null
+    for (int i = 0; i < touchables.size(); i++) {
+      touchable = touchables.get(i);
       touchable.setClickable(enabled);
     }
 

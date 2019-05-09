@@ -118,8 +118,9 @@ public class CameraView extends ViewGroup {
       protected void onPostMain(Void avoid) {
         if (!camera.isPresent()) {
           Log.w(TAG, "tried to open camera but got null");
-          for (CameraViewListener listener : listeners) {
-            listener.onCameraFail();
+          for(int i = 0 ; i< listeners.size();i++)
+          {
+            listeners.get(i).onCameraFail();
           }
           return;
         }
@@ -171,8 +172,8 @@ public class CameraView extends ViewGroup {
       }
     });
 
-    for (CameraViewListener listener : listeners) {
-      listener.onCameraStop();
+    for(int i = 0; i< listeners.size(); i++) {
+      listeners.get(i).onCameraStop();
     }
   }
 
@@ -323,8 +324,10 @@ public class CameraView extends ViewGroup {
           @Override
           public void run() {
             requestLayout();
-            for (CameraViewListener listener : listeners) {
-              listener.onCameraStart();
+
+            for(int i = 0 ; i< listeners.size();i++)
+            {
+              listeners.get(i).onCameraStart();
             }
           }
         });
@@ -550,8 +553,9 @@ public class CameraView extends ViewGroup {
     @Override
     protected void onPostExecute(byte[] imageBytes) {
       if (imageBytes != null) {
-        for (CameraViewListener listener : listeners) {
-          listener.onImageCapture(imageBytes);
+        for(int i = 0 ; i< listeners.size();i++)
+        {
+          listeners.get(i).onImageCapture(imageBytes);
         }
       }
     }

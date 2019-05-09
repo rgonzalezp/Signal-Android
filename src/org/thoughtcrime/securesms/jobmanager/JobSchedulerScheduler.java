@@ -39,9 +39,12 @@ public class JobSchedulerScheduler implements Scheduler {
                                                 .setMinimumLatency(delay)
                                                 .setPersisted(true);
 
-    for (Constraint constraint : constraints) {
+    Constraint constraint = null;
+    for (int i = 0; i < constraints.size() ; i++) {
+      constraint = constraints.get(i);
       constraint.applyToJobInfo(jobInfoBuilder);
     }
+
 
     Log.i(TAG, "Scheduling a run in " + delay + " ms.");
     JobScheduler jobScheduler = application.getSystemService(JobScheduler.class);

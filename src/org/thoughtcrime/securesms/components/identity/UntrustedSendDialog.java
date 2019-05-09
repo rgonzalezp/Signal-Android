@@ -45,7 +45,9 @@ public class UntrustedSendDialog extends AlertDialog.Builder implements DialogIn
       @Override
       protected Void doInBackground(Void... params) {
         synchronized (SESSION_LOCK) {
-          for (IdentityRecord identityRecord : untrustedRecords) {
+          IdentityRecord identityRecord = null;
+          for(int i = 0 ; i< untrustedRecords.size(); i++) {
+            identityRecord = untrustedRecords.get(i);
             identityDatabase.setApproval(identityRecord.getAddress(), true);
           }
         }
